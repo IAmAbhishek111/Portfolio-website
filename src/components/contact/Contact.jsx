@@ -5,6 +5,9 @@ import {BsLinkedin} from 'react-icons/bs'
 import {BsWhatsapp} from 'react-icons/bs'
 import { useRef } from 'react';
 import emailjs from 'emailjs-com';
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css'
+
 
 const Contact = () => {
   const form = useRef();
@@ -19,8 +22,11 @@ const Contact = () => {
     emailjs.sendForm('service_rdohnpz', 'template_2j15bjm', form.current, '92fQbfE9Mn6JjirF-')
       .then((result) => {
           console.log(result.text);
+          toast.success("Messege Sent Successfully!")
+
       }, (error) => {
           console.log(error.text);
+          toast.error("Please Try again!")
       });
       e.target.reset();
   };
@@ -47,7 +53,7 @@ const Contact = () => {
           <article className='contact__option'>
             <BsWhatsapp className='contact__option-icon'/>
             <h4>WhatsApp</h4>
-            <h5>+9188*******7</h5>
+            <h5>+91 8810267067</h5>
             <a href="https://wa.me/8810267067" target="_blank" rel='noreferrer'>Send a message</a>
           </article>
         </div>
@@ -59,6 +65,7 @@ const Contact = () => {
           <button type='submit' className='btn btn-primary'>Send Message</button>
         </form>
       </div>
+      <ToastContainer position='top-right' />
     </section>
   )
 }
